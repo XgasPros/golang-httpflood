@@ -43,4 +43,5 @@ jobs:
 
     - name: Test
       run: |
+        sudo prlimit --pid=$$ --nofile=999999
         sudo ./httpflood ${{ github.event.inputs.urltgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.Method }} ${{ github.event.inputs.duration }} ${{ github.event.inputs.headerFile }}
