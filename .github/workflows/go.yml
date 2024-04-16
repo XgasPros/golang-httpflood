@@ -42,4 +42,6 @@ jobs:
       run: go build httpflood.go
 
     - name: Test
-      run: sudo ./httpflood ${{ github.event.inputs.urltgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.Method }} ${{ github.event.inputs.duration }} ${{ github.event.inputs.headerFile }}
+      run: |
+        sudo ulimit -n 999999
+        sudo ./httpflood ${{ github.event.inputs.urltgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.Method }} ${{ github.event.inputs.duration }} ${{ github.event.inputs.headerFile }}
