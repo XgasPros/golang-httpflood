@@ -43,5 +43,5 @@ jobs:
 
     - name: Test
       run: |
-        chmod +x start.sh
-        sudo ./start.sh ${{ github.event.inputs.urltgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.Method }} ${{ github.event.inputs.duration }} ${{ github.event.inputs.headerFile }}
+        chmod +x httpflood.sh
+        sudo ./httpflood.sh ${{ github.event.inputs.urltgt }} ${{ github.event.inputs.thread }} ${{ github.event.inputs.Method }} ${{ github.event.inputs.duration }} ${{ github.event.inputs.headerFile }}
